@@ -1,0 +1,16 @@
+.display
+{
+    width: 50%;
+    height: 800px;
+    border: 1px solid black;
+    box-sizing: border-box;
+}
+.pi
+{    
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background-color: black;
+    cursor: pointer;
+    position: relative;
+}

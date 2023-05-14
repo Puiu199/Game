@@ -3,38 +3,42 @@ class pointer
     constructor(punct)
     {
         this.punct=document.createElement(punct.tag);
-        this.punct.style.top=punct.top;
+        this.punct.style.top=punct.localStorage;
         this.punct.style.left=punct.left;
         this.punct.classList=punct.clas;
-        document.querySelector('.display').append(this.punct);
+        document.querySelector('.display').append(this.punct);     
     }
 }
-
 let x,y,score=0;
-function create_CORDONATION(x,y)
+let date=[localStorage.getItem('x'),localStorage.getItem('y')];
+function create_CORDONATION()
 {
-x=Math.random()*100;
-y=Math.random()*100;
-create_point(); 
+    localStorage.setItem('x',Math.random()*100);
+    localStorage.setItem('y',Math.random()*100);
+    console.log(date)
+}
+function del()
+{
+    date.shift();
+    date.pop();
 }
 
 let cordonation=
-{   clas:"pi",
+{   
+    clas:"pi",
     tag:"div",
-    top:x+"%",
-    left:y+"%"
+    top:localStorage.getItem('x')+"%",
+    left:localStorage.getItem('y')+"%"
+}
+$(document).on('click','.pi',function()
+{
+    create_CORDONATION()
+    create_point();
+})
+
+function create_point()
+{     
+    new pointer(cordonation);
+    create_CORDONATION()
 }
 
-$(document).ready(function()
-{
-    $('.pi').on('click',function(){
-        $('.pi').remove('div');
-        score=score+1;
-       create_CORDONATION(x,y);
-    })
-      
-})
-function create_point()
-{
-    new pointer(cordonation);
-}

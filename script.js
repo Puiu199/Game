@@ -53,8 +53,10 @@ $('#start').on('click',function()
         else 
         {  
             alert("Finish, Youre score is :="+localStorage.getItem('Score'))
-            localStorage.setItem('Score',0)
-            clearInterval(time_action)
+            localStorage.setItem('Score',0);
+            time.textContent="Time"
+            clearInterval(time_action);
+            $('.point').first().remove();
             i=10; 
             $('#start').show();  
         }
@@ -62,4 +64,5 @@ $('#start').on('click',function()
     $(this).hide();
 });
 
+alert("GAME RULES: It`s a simple game,press 'Start' to begin. Goal of the game :collect as many POINTS as possible IN TEN SECONDS")
     

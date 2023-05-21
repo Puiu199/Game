@@ -9,7 +9,8 @@ class pointer
         document.querySelector('.display').append(this.punct);     
     }
 }
-    let x,y;
+    let x,y,score=0;
+    let i=10;
     let cordonation=
     {   
         clas:"point",
@@ -23,30 +24,42 @@ class pointer
     localStorage.setItem('T',Math.random()*100);
     cordonation.top=JSON.parse(localStorage.getItem('T'))+'%';
     cordonation.left=JSON.parse(localStorage.getItem('L'))+'%';
-    console.log(cordonation)
 }
-
 function create_point()
 {     
     create_CORDONATION();
-    start();
-    new pointer(cordonation);
+    localStorage.setItem('Score',score)
+    $('.point').first().remove();
+    new pointer(cordonation);        
 }
-
-function start()
-{
-    timeR=date=new Date().getTime();
-    let Timex=parseInt(timeR/1000%60)+10;
-    localStorage.setItem('startTime',Timex);
-    
-}
-
 $(document).on('click','.point',function()
 {    
-
-    create_point();
+    localStorage.setItem('Score',score++)
+    new pointer(cordonation);     
     create_CORDONATION();  
     $('.point').first().remove();
 })
 
+time=document.querySelector('h1');
+$('#start').on('click',function()
+{    
+   let time_action = setInterval(()=>
+    {
+        if(i>0)
+        {
+            time.textContent=i;       
+            i--;
+        }
+        else 
+        {  
+            alert("Finish, Youre score is :="+localStorage.getItem('Score'))
+            localStorage.setItem('Score',0)
+            clearInterval(time_action)
+            i=10; 
+            $('#start').show();  
+        }
+    },1000) 
+    $(this).hide();
+});
 
+    

@@ -10,10 +10,31 @@
 }
 .point
 {    
-    width: 10px;
-    height: 10px;
+    width: 30px;
+    height: 30px;
     border-radius: 50%;
-    background-color: black;
     cursor: pointer;
     position: relative;
+    background-image: url(./reward.png);
+    background-repeat: no-repeat;
+    background-size: contain;
+    border: none;
+    animation:ani_Point 1s infinite linear;
+}
+h1
+{
+    
+    letter-spacing: 0.5pc;
+}
+@keyframes ani_Point
+{
+    from
+    {
+        transform:rotate3d(0deg)
+    }
+    to
+    {
+        transform: rotate(360deg);
+    }
+    
 }

@@ -28,7 +28,7 @@ class pointer
 function create_point()
 {     
     create_CORDONATION();
-    localStorage.setItem('Score',score)
+    localStorage.setItem('Score',score=0)
     $('.point').first().remove();
     new pointer(cordonation);        
 }

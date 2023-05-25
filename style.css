@@ -40,18 +40,16 @@
 }
 .cancel:hover
 {
-    background-image: url(./img/cancel-red.png); 
+    background-image: url(./img/cancel.png); 
 }
 .heart
 {
-    width: 30px;
-    height: 30px;
+    width: 35px;
+    height: 35px;
     background-image: url(./img/red-heart.svg);
     background-repeat: no-repeat;
     background-size: contain;
     background-position: center;
-    margin: 0px;
-    padding: 0px;
     position: relative;
     border: none;
     cursor: pointer;
@@ -64,14 +62,10 @@
     display: flex;
     justify-content: space-evenly !important;
     border:1px solid black;
-    z-index: 2;
     background-color: transparent;
     cursor: default;
 }
-.life>span
-{
-    margin: auto;
-}
+
 h1
 {
     

@@ -32,14 +32,7 @@ let cancel=
     }
     life._proto_=cordonation;
     cancel._proto_=cordonation;
-function life_1() //Function for creation new heart wich add some secunds for continue game
-    {
-        new pointer(life);
-    }
-function can_cel() //Function for creation new cancel wich stope the game
-    {
-        new pointer(cancel);
-    }
+
 $(document).on('click','.heart',function() //click for heart  add some secunds for continue game
     {           
         if(i===0) // if i(time(secunds)) are = 0 the game will be finish and the heart will be hide
@@ -80,11 +73,9 @@ function  create_CORDONATION_cancel()
     {
         cancel.top=localStorage.getItem('T')+1+'%';
         cancel.left=localStorage.getItem('L')+1+'%';
-        s=localStorage.getItem('L')*85;
+        s=localStorage.getItem('L')*95;
         console.log(s);
-        setTimeout(()=>{
-            can_cel();
-        },s)    
+        setTimeout(()=>{can_cel();},s)    
     }
 function create_CORDONATION()
     {
@@ -157,12 +148,22 @@ $('#start').on('click',function()
 });
 function log()
 {
-alert("GAME RULES: It`s a simple game,press 'Start' to begin. Goal of the game :collect as many POINTS as possible IN TEN SECONDS")
-let user=prompt('Insert your name');
-if(user=="")
-{
-    user="Un fuflic";
-}
-localStorage.setItem('User Name',user+" O_O ");
+    alert("GAME RULES: It`s a simple game,press 'Start' to begin. Goal of the game :collect as many POINTS as possible IN TEN SECONDS")
+    let user=prompt('Insert your name');
+    if(user=="")
+    {
+        user="Un fuflic";
+    }
+    localStorage.setItem('User Name',user+" O_O ");
 }
 log();
+function life_1() //Function for creation new heart wich add some secunds for continue game
+    {
+        new pointer(life);
+        setTimeout(()=>{($('.display>.heart').remove())},3000)   
+    }
+function can_cel() //Function for creation new cancel wich stope the game
+    {
+        new pointer(cancel);  
+        setTimeout(()=>{($('.display>.cancel').remove())},3000)
+    }

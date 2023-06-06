@@ -1,4 +1,4 @@
-let i=0,s,x,y,score=0;
+let i=0,s,x,y,score=0,timp=3500;
     time=document.querySelector('h1');
 class pointer
 {
@@ -61,7 +61,7 @@ $(document).on('click','.heart',function() //click for heart  add some secunds f
             create_CORDONATION_life(); 
         }
     })
-function create_CORDONATION_life() // function 
+function create_CORDONATION_life() // function create cordonation for heart wich add time 
     {
         life.top=JSON.parse(localStorage.getItem('L'))+'%';
         life.left=JSON.parse(localStorage.getItem('T'))+'%';
@@ -69,7 +69,7 @@ function create_CORDONATION_life() // function
         console.log(s);
         setTimeout(()=>{life_1();},s)    
     }
-function  create_CORDONATION_cancel()
+function  create_CORDONATION_cancel() //function create cordonation for x wich when gamer add 3 x the game will be stopped
     {
         cancel.top=localStorage.getItem('T')+1+'%';
         cancel.left=localStorage.getItem('L')+1+'%';
@@ -77,12 +77,12 @@ function  create_CORDONATION_cancel()
         console.log(s);
         setTimeout(()=>{can_cel();},s)    
     }
-function create_CORDONATION()
+function create_CORDONATION() // function create cordonation for point ad insert them in local storage 
     {
         localStorage.setItem('L',Math.random()*98);
         localStorage.setItem('T',Math.random()*98);
-        cordonation.top=JSON.parse(localStorage.getItem('T'))+'%';
-        cordonation.left=JSON.parse(localStorage.getItem('L'))+'%';
+        cordonation.top=JSON.parse(localStorage.getItem('T'))+'%'; //attribute coordonation for point
+        cordonation.left=JSON.parse(localStorage.getItem('L'))+'%';//attribute coordonation for point
     }   
 function create_point()
     {     
@@ -93,7 +93,7 @@ function create_point()
         create_CORDONATION_life();  
         create_CORDONATION_cancel();    
     }
-function finish_game()
+function finish_game() //at the finall game will be  
     {
         alert("Finish,"+ localStorage.getItem('User Name')+" Your score is :="+localStorage.getItem('Score'))
             localStorage.setItem('Score',0);
@@ -104,23 +104,18 @@ function finish_game()
             $('#start').show();  
     }
 $(document).on('click','.cancel',function()
-    {    
-        $(this).remove();
-        
-            console.warn("You touch me")    
-        if($('.cancel').length>=2)
-            {                        
-                $('span').first().remove();            
-            }
-            else 
-            {
-            finish_game();
-                i=0;
-            }
-            create_CORDONATION_cancel();
-           }
-        
-    )
+{    
+    $(this).remove();   
+    if($('.cancel').length>=2)
+        {                        
+            $('span').first().remove();            
+        }
+        else 
+        {
+            finish_game();i=0;
+        }
+    create_CORDONATION_cancel();
+})
 $(document).on('click','.point',function()
     {    
         localStorage.setItem('Score',score++)
@@ -129,16 +124,15 @@ $(document).on('click','.point',function()
         $('.point').first().remove();
     })
 $('#start').on('click',function()
-{    i=10;
+{
+        i=10;
    let time_action = setInterval(()=>
     {
-        if(i>0)
-        {
+        if(i>0){
             time.textContent=i;       
             i--;
         }
-        else 
-        {   
+        else{   
             location.reload(true);
             finish_game();
             clearInterval(time_action);
@@ -149,21 +143,24 @@ $('#start').on('click',function()
 function log()
 {
     alert("GAME RULES: It`s a simple game,press 'Start' to begin. Goal of the game :collect as many POINTS as possible IN TEN SECONDS")
-    let user=prompt('Insert your name');
-    if(user=="")
+    let user=prompt('Insert your name'); //User insert name the gamer
+   
+    if(user=="" || null)
     {
-        user="Un fuflic";
+        user="Un fuflic";// Default user`s name 
     }
-    localStorage.setItem('User Name',user+" O_O ");
+    localStorage.setItem('User Name',user+" O_O "); //add 
 }
 log();
 function life_1() //Function for creation new heart wich add some secunds for continue game
     {
-        new pointer(life);
-        setTimeout(()=>{($('.display>.heart').remove())},3000)   
+        new pointer(life);       
+        setTimeout(()=>{($('.display>.heart').remove())},timp)
+        console.log(timp);           
     }
 function can_cel() //Function for creation new cancel wich stope the game
     {
         new pointer(cancel);  
-        setTimeout(()=>{($('.display>.cancel').remove())},3000)
+        $('.display>.cancel').css("animation","timing 3.5s infinite linear")
+        setTimeout(()=>{($('.display>.cancel').remove())},timp)
     }
